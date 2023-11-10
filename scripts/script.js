@@ -6,5 +6,10 @@ for(let i=0;i<16;i++)
         console.log(count);
         let squareDiv= document.createElement('div');
         squareDiv.setAttribute('id', 'gridDiv');
-        squareDiv.textContent='howdy';
         containerDiv.appendChild(squareDiv);}
+let squareDivList= document.querySelectorAll('#gridDiv');
+squareDivList.forEach((squareDiv)=>{
+    squareDiv.addEventListener('mouseover', ()=>{
+        squareDiv.style.backgroundColor="black";
+    })
+})
