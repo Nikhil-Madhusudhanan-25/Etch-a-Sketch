@@ -1,4 +1,5 @@
 let containerDiv= document.getElementById('container');
+let opacityArray= [];
 for(let i=0;i<16;i++)
  for(let j=0;j<16;j++)
     {   
@@ -6,9 +7,14 @@ for(let i=0;i<16;i++)
         squareDiv.setAttribute('id', 'gridDiv');
         containerDiv.appendChild(squareDiv);}
 let squareDivList= document.querySelectorAll('#gridDiv');
-squareDivList.forEach((squareDiv)=>{
+
+squareDivList.forEach((squareDiv,squareDivIndex)=>{
+    opacityArray[squareDivIndex]= 0;
     squareDiv.addEventListener('mouseover', ()=>{
         squareDiv.style.backgroundColor="black";
+        if(opacityArray[squareDivIndex]<1.0)
+            opacityArray[squareDivIndex]+=0.1;
+        squareDiv.style.opacity=opacityArray[squareDivIndex];
     })
 })
 let customGridButton= document.getElementById('custom');
@@ -17,7 +23,6 @@ customGridButton.addEventListener('click', ()=>{
     if(gridValue>=2&&gridValue<=100)
         squareDivList.forEach((squareDiv)=>{
             let newValue= 100/gridValue;
-            let count=0;
             while(containerDiv.firstChild)
                 containerDiv.removeChild(containerDiv.lastChild);
             for(let i=0;i<gridValue;i++)
@@ -29,8 +34,12 @@ customGridButton.addEventListener('click', ()=>{
                     
         })
         let squareDivList2= document.querySelectorAll('#gridDiv');
-        squareDivList2.forEach((squareDiv)=>{
+        squareDivList2.forEach((squareDiv,squareDivIndex)=>{
+            opacityArray[squareDivIndex]=0;
             squareDiv.addEventListener('mouseover', ()=>{
                 squareDiv.style.backgroundColor="black";
+                if(opacityArray[squareDivIndex]<1)
+                    opacityArray[squareDivIndex]+=0.1;
+                squareDiv.style.opacity=opacityArray[squareDivIndex];
             })})
 })
